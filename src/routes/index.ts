@@ -1,11 +1,7 @@
 import express from "express";
-import convert from "./api/convert";
+import images from "./api/images";
 const routes = express.Router();
 
-routes.get("/", (req, res) => {
-  res.send({ message: "Hello world!" });
-});
-
-routes.use("/convert", convert);
+routes.use("/images", images);
 
 export default routes;
