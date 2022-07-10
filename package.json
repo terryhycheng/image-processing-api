@@ -7,7 +7,8 @@
     "server": "nodemon src/index.ts",
     "build": "tsc",
     "jasmine": "jasmine",
-    "test": "npm run build && npm run jasmine"
+    "test": "npm run build && npm run jasmine",
+    "lint": "eslint ./src/index.ts"
   },
   "keywords": [],
   "author": "",
@@ -28,7 +29,10 @@
     "@typescript-eslint/eslint-plugin": "^5.30.5",
     "@typescript-eslint/parser": "^5.30.5",
     "eslint": "^8.19.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "nodemon": "^2.0.19",
+    "prettier": "^2.7.1",
     "supertest": "^6.2.4"
   }
 }
