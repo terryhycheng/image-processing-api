@@ -1,10 +1,10 @@
-import express from "express";
-import sharp from "sharp";
-import { promises as fs } from "fs";
+import express from 'express';
+import sharp from 'sharp';
+import { promises as fs } from 'fs';
 
 const images = express.Router();
 
-images.get("/", async (req, res) => {
+images.get('/', async (req, res) => {
   //Check if query contains a file name
   if (req.query.filename) {
     const { filename, width, height } = req.query;
@@ -12,7 +12,7 @@ images.get("/", async (req, res) => {
     const height_number: number = parseInt(height as string);
     const file: sharp.Sharp = sharp(`./images/full/${filename}.jpg`);
     try {
-      res.writeHead(200, { "Content-Type": "image/jpeg" });
+      res.writeHead(200, { 'Content-Type': 'image/jpeg' });
       const data = await toBuffer(
         width_number,
         height_number,
@@ -21,11 +21,11 @@ images.get("/", async (req, res) => {
       );
       res.end(data);
     } catch (error) {
-      console.log("Error from Image GET route", error);
+      console.log('Error from Image GET route', error);
     }
   } else {
     res.status(400).send({
-      message: "No image found. Please make sure the file name is correct.",
+      message: 'No image found. Please make sure the file name is correct.',
     });
   }
 });
@@ -35,8 +35,8 @@ const toBuffer = async (
   height: number,
   file: sharp.Sharp,
   filename: string
-) => {
-  if (!width || !height) {
+): Promise<Buffer> => {
+  if (!width || !height || width <= 0 || height <= 0) {
     return file.jpeg().toBuffer();
   } else {
     const data = file.resize(width, height).jpeg().toBuffer();
@@ -50,13 +50,13 @@ const toOutput = async (
   filename: string,
   width: number,
   height: number
-) => {
+): Promise<void> => {
   try {
     fs.writeFile(`./images/thumb/${filename}_${width}x${height}.jpg`, data, {
-      flag: "w+",
+      flag: 'w+',
     });
   } catch (error) {
-    console.log("Error from toOuput()", error);
+    console.log('Error from toOuput()', error);
   }
 };
 
