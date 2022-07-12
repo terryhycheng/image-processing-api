@@ -5,8 +5,14 @@ import { promises as fs } from 'fs';
 const images = express.Router();
 
 images.get('/', async (req, res) => {
+  //Loop over the dir and create an array
+  const dir = await fs.opendir(`./images/full`);
+  const files: string[] = [];
+  for await (const dirent of dir) {
+    files.push(dirent.name);
+  }
   //Check if query contains a file name
-  if (req.query.filename) {
+  if (files.includes(`${req.query.filename}.jpg`)) {
     const { filename, width, height } = req.query;
     const width_number: number = parseInt(width as string);
     const height_number: number = parseInt(height as string);
