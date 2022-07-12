@@ -2,6 +2,8 @@
 
 This api can be used to resize your image in `/images/full` and output to `/images/thumb` with the width and height you want.
 
+Image format: `.jpg` *More formats will be added later*
+
 ## Usage
 
 ### Start the server
