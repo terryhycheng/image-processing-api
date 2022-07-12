@@ -16,7 +16,7 @@ then a `dist` folder will be produced and you will see `Server started at http:/
 
 ### Go to `/images` API
 
-You could click the link that is display on `http://localhost:3000` or go to `http://localhost:3000/images` directly. Without sending any query parameters, an error message should be shown up as a response to the client side.
+You could click the link shown on `http://localhost:3000` or go to `http://localhost:3000/images` directly. Without sending any query parameters, an error message should be shown up as a response to the client side.
 
 ### Passing Query Parameters to the API
 
